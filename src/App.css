@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+
+  background-color: #2980b9;
+}
+.MessageBox {
+  width: 40rem;
+  padding: 2rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  background-color: #e67e22;
+  color: #ecf0f1;
+  border-radius: 0.8rem;
+}
+.GameBoard {
+  margin: 1rem;
+  width: 50rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  background-color: #3498db;
+  border-radius: 0.6rem;
+}
+.Box {
+  height: 12rem;
+  width: 12rem;
+  margin: 1rem;
+  font-size: 11rem;
+  border: none;
+  outline: none;
+  background-color: #ecf0f1;
+  border-radius: 1.2rem;
+}
+.Box:hover {cursor: pointer;}
+
+.ResetButton {
+  width: 15rem;
+  padding: 1.2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  background-color: #e67e22;
+  color: #ecf0f1;
+  border-radius: 0.8rem;
+}
+.ResetButton:hover {cursor: pointer;}
