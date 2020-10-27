@@ -75,7 +75,7 @@ class App extends Component<any, State> {
     if (this.checkWin()) {
       message=((this.state.turn % 2 === 0) ? 'O' : 'X') + ' won the game!';
     }
-    if (this.checkDraw()) {
+    else if (this.checkDraw()) {
       message = 'The game is draw!';
     }
     if (message !== '') {
