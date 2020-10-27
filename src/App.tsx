@@ -16,7 +16,7 @@ class App extends Component<any, State> {
   private resetState = (): void => {
     this.setState({
       turn: 0,
-      grid: ["", "", "", "", "", "", "", "", ""],
+      grid: ['', '', '', '', '', '', '', '', ''],
       message: 'X is playing',
       win: false
     });
@@ -26,7 +26,7 @@ class App extends Component<any, State> {
 
   private play = (index: number): void => {
     if (this.state.grid[index] !== "" || this.state.win) {
-      return
+      return;
     }
     let _grid = this.state.grid;
     _grid[index] = (this.state.turn % 2 === 0) ? 'X' : 'O';
@@ -38,7 +38,7 @@ class App extends Component<any, State> {
     });
   }
 
-  private checkWin = (): void => {
+  private checkWin = (): boolean => {
     let player = (this.state.turn % 2 === 0) ? 'O' : 'X';
     let victory = // Check diagonal
       (this.state.grid[0] === player && this.state.grid[4] === player && this.state.grid[8] === player) ||
@@ -54,18 +54,38 @@ class App extends Component<any, State> {
         victory = victory || line || column;
       }
     }
-    if (victory && !this.state.win) {
-      this.setState({
-        turn: this.state.turn,
-        grid: this.state.grid,
-        message: player + ' won the game!',
-        win: victory
-      });
-    }
+    return victory;
+  }
+
+  private checkDraw(): boolean {
+    let draw = true;
+    this.state.grid.forEach(box => {
+      if (box === '') {
+        draw = false;
+      }
+    })
+    return draw;
   }
 
   componentDidUpdate = (): void => {
-    this.checkWin();
+    if (this.state.win) {
+      return;
+    }
+    let message = '';
+    if (this.checkWin()) {
+      message=((this.state.turn % 2 === 0) ? 'O' : 'X') + ' won the game!';
+    }
+    if (this.checkDraw()) {
+      message = 'The game is draw!';
+    }
+    if (message !== '') {
+      this.setState({
+        turn: this.state.turn,
+        grid: this.state.grid,
+        message: message,
+        win: true
+      });
+    }
   }
 
   render() {
